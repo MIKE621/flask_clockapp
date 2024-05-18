@@ -8,3 +8,5 @@ Nota: por algun motivo al crear el archivo requirements.txt no agrego estas 2 li
 Inician su entorno virtual source /env/bin/activate
 pip install gtts
 pip install pygame
+
+ICSE by Miguel Fuentes
