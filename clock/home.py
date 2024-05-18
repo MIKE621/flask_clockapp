@@ -61,8 +61,8 @@ def texttospeech(employee, message_type):
     tts.save(file)
 
     # Inicializar pygame y reproducir el audio desde el archivo temporal
-    pygame.mixer.init()
-    pygame.mixer.music.load(file)
+    # pygame.mixer.init()
+    # pygame.mixer.music.load(file)
     # pygame.mixer.music.play()
 
     # # Esperar hasta que se complete la reproducción del audio
