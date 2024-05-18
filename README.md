@@ -10,3 +10,4 @@ pip install gtts
 pip install pygame
 
 ICSE by Miguel Fuentes
+miguelfuentes621@gmail.com
