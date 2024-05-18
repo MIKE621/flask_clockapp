@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block tittle %} Ventas {% endblock %}
+
+{% block content %}
+
+<main class="container-fluid">
+    <div class="p-2 my-2 row rounded shadow-lg">
+        <form class="container-fluid" method="post">
+            <div class="col-2" style="display: inline-block;">
+                <span class="text-left">
+                    <h2>Registros</h2>
+                </span>
+            </div>
+            <div class="col-sm-2" style="display: inline-block;">
+                <label for="departament" class="form-label">Empresa </label>
+                <select class="form-control" name="company">
+                    {% for empresa in empresas %}
+                    <option value="{{ empresa }}">{{ empresa }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-2" style="display: inline-block;">
+                <label for="departament" class="form-label">Empleado </label>
+                <select class="form-control" name="employee">
+                    {% for employee in employees %}
+                    <option value="{{ employee.id }}">{{ employee.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-2" style="display: inline-block;">
+                <label for="name" class="form-label">Fecha Inicio</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" placeholder="Dia/Mes/Año"
+                    value="" required>
+            </div>
+            <div class="col-sm-2" style="display: inline-block;">
+                <label for="name" class="form-label">Fecha Fin</label>
+                <input type="date" class="form-control" id="end_date" name="end_date" placeholder="Dia/Mes/Año" value=""
+                    required>
+            </div>
+
+            <input type="submit" class="btn btn-secondary" value="Filtrar">
+        </form>
+    </div>
+
+    <table class="table table-striped shadow-lg">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Empleado</th>
+                <th scope="col">Empresa</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Día</th>
+                <th scope="col">Entrada</th>
+                <th scope="col">AlmuerzoIn</th>
+                <th scope="col">AlmuerzoOut</th>
+                <th scope="col">Salida</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for detail in registerdetail %}
+            <tr>
+                <td>{{ detail.id }}</td>
+                <td>{{ detail.employee.name }}</td>
+                <td>{{ detail.employee.company }}</td>
+                <td>{{ detail.register_date.strftime('%d/%m/%Y') }}</td>
+                <td>{{ detail.register_day }}</td>
+                <td>
+                    {% if detail.in_hour %}{{ detail.in_hour.split(':')[0:2]|join(':') }}
+                    {% else %}Sin registro{% endif %}
+                </td>
+                <td>
+                    {% if detail.lunch_start %}{{ detail.lunch_start.split(':')[0:2]|join(':') }}
+                    {% else %}Sin registro{% endif %}
+                </td>
+                <td>
+                    {% if detail.lunch_end %}{{ detail.lunch_end.split(':')[0:2]|join(':') }}
+                    {% else %}Sin registro{% endif %}
+                </td>
+                <td>
+                    {% if detail.out_hour %}{{ detail.out_hour.split(':')[0:2]|join(':') }}
+                    {% else %}Sin registro{% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block tittle %} Lista de Usuarios {% endblock %}
+
+{% block content %}
+
+<main class="container-fluid">
+    <div class="p-2 my-2 row rounded shadow-lg">
+        <div class="col-3">
+            <a class="btn btn-secondary btn-xl" href="{{ url_for('auth.register') }}">Crear</a>
+        </div>
+        <div class="col-5">
+            <span class="text-center"><h2>Usuarios</h2></span>
+        </div>
+    </div>
+
+    <table class="table table-striped shadow-lg">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Roll</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.roll }}</td>
+                <td>
+                    <a href="{{ url_for('auth.register_update', id = user.id) }}" class="btn btn-outline-secondary btn-sm">Actualizar</a>
+                    <a href="{{ url_for('auth.delete', id = user.id) }}" class="btn btn-outline-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+</main>
+
+{% endblock %}

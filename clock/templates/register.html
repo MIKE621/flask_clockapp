@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block tittle %} Registrar Usuario {% endblock %}
+
+{% block content %}
+
+<!-- Custom styles for this template -->
+<link href="form-validation.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+    <div class="container">
+        <main>
+            <div class="row g-5">
+                <div>
+                    <form class="needs-validation bg-light card p-1" novalidate method="post">
+                        <div class="p-2 my-2 row">
+                            <div class="col-3">
+                                <input type="submit" class="btn btn-secondary btn-sm" value="Guardar">
+                                <a class="btn btn-warning btn-sm" href="{{ url_for('auth.users') }}">Regresar</a>
+                            </div>
+                            <div class="col-5">
+                                <span class="text-center"><h2>Nuevo Usuario</h2></span>
+                            </div>
+                        </div>
+
+                        <hr class="my-2">
+
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <label for="username" class="form-label">Usuario</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="" value="" required>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="name" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="" value="" required>
+                            </div>
+
+                            <div class="col-6">
+                                <label for="password" class="form-label">Contraseña </label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="contraseña" required>
+                            </div>
+                            <div class="col-6">
+                                <label for="roll" class="form-label">Roll </label>
+                                <select class="form-control" name="roll">
+                                    {% for rol in roles %}
+                                    <option value="{{ rol }}">{{ rol }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="form-validation.js"></script>
+</body>
+
+{% endblock %}
